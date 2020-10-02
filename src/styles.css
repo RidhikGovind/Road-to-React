@@ -1,8 +1,40 @@
-body{
-  textAlign: center;
+body {
+  color: #222;
+  background: #f4f4f4;
+  font-family: "Montserrat";
+  text-align: center;
 }
 
-.App {
-  font-family: sans-serif;
-  text-align: center;
+input {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  margin-right: 10px;
+  border: 1px solid #dddddd;
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+  background: #add8e6;
+  transition: 0.2s ease-in all;
+  color: #222;
+  cursor: pointer;
+}
+
+button:hover{
+  background: #6accec;
+}
+span {
+  margin: 5px;
+}
+
+.table {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.table-content {
+  margin: 5px;
 }
