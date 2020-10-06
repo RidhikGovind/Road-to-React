@@ -2,29 +2,19 @@ import React, { Component } from "react";
 import "./styles.css";
 import Search from "./components/Search";
 import Table from "./components/Table";
+import axios from "axios";
 
 class App extends Component {
   state = {
-    list: [
-      {
-        title: "React",
-        url: "https://facebook.github.io/react/",
-        author: "Jordan Walke",
-        num_comments: 3,
-        points: 4,
-        objectID: 0
-      },
-      {
-        title: "Redux",
-        url: "https://github.com/reactjs/redux",
-        author: "Dan Abramov, Andrew Clark",
-        num_comments: 2,
-        points: 5,
-        objectID: 1
-      }
-    ],
+    list: [],
     searchTerm: ""
   };
+
+  componentDidMount() {
+    axios
+      .get(`https://hn.algolia.com/api/v1/search?query=redux`)
+      .then((res) => this.setState({ list: res.data.hits }));
+  }
 
   onDismiss = (id) => {
     this.setState({
@@ -40,18 +30,11 @@ class App extends Component {
     const { searchTerm, list } = this.state;
     return (
       <div className="App">
-
-        <Search
-        value={searchTerm}
-        onChange={this.onSearchChange}>
-        Search{" "}
+        <Search value={searchTerm} onChange={this.onSearchChange}>
+          Search{" "}
         </Search>
 
-        <Table 
-        list={list} 
-        pattern={searchTerm} 
-        onDismiss={this.onDismiss} />
-        
+        <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss} />
       </div>
     );
   }
