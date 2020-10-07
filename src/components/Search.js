@@ -2,16 +2,17 @@ import React, {Component} from "react";
 
 class Search extends Component {
   render() {
-    const { value, onChange ,children} = this.props;
+    const { onSubmit,children, onChange, value} = this.props;
     return(
       
-        <form>
-         {children}
+        <form onSubmit={onSubmit}>
+         
           <input
           type="text"
-          value={ value }
-          onChange={onChange}
+         onChange={onChange}
+         value={value}
           placeholder="Enter the name of the book"/>
+          <button type="submit">{children}</button>
         </form>
       
     )

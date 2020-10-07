@@ -10,9 +10,11 @@ class App extends Component {
     searchTerm: ""
   };
 
-  componentDidMount() {
+  onSubmit = (e) => {
+    e.preventDefault();
+    
     axios
-      .get(`https://hn.algolia.com/api/v1/search?query=redux`)
+      .get(`https://hn.algolia.com/api/v1/search?query=${this.state.searchTerm}`)
       .then((res) => this.setState({ list: res.data.hits }));
   }
 
@@ -22,15 +24,17 @@ class App extends Component {
     });
   };
 
-  onSearchChange = (e) => {
-    this.setState({ searchTerm: e.target.value });
-  };
+    onChange = (e) => {
+      this.setState({ searchTerm: e.target.value})
+    }
+ 
 
   render() {
     const { searchTerm, list } = this.state;
     return (
       <div className="App">
-        <Search value={searchTerm} onChange={this.onSearchChange}>
+        <h2>Hacker Rank API book finder</h2>
+        <Search value={searchTerm} onSubmit={this.onSubmit} onChange={this.onChange}>
           Search{" "}
         </Search>
 
@@ -40,3 +44,9 @@ class App extends Component {
   }
 }
 export default App;
+
+
+
+
+
+
